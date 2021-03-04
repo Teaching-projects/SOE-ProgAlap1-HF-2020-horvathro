@@ -116,9 +116,9 @@ Felev vegi jegyek
 """
 
 class DataSet:
-    data_set = []
 
     def __init__(self, name):
+        self.data_set = []
         self.name = name
     
     def record(self,data):
@@ -161,3 +161,11 @@ class DataSet:
         while i <= self.max():
             print("{} {} | {}".format((4-(len(str(i))))*" ", i, self.count(i)*"#"))
             i+=1
+
+ds2 = DataSet("Felev vegi jegyek")
+for cc in [5,5,4,5,3,4,5,5]: ds2.record(cc)
+print(ds2.min())
+print(ds2.max())
+print(ds2.average())
+print(ds2.range())
+ds2.print_histogram()

@@ -159,5 +159,5 @@ class DataSet:
         print(len(self.name)*"-")
         i = self.min()
         while i <= self.max():
-            print("{} {} | {}".format((5-(len(str(i))))*" ", i, self.count(i)*"#"))
+            print("{} {} | {}".format((4-(len(str(i))))*" ", i, self.count(i)*"#"))
             i+=1

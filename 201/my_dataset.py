@@ -1,5 +1,7 @@
 """
-Az feladat egy olyan osztaly letrehozsa, melyben mert adatok listajat tudjuk tarolni, illetve errol mindenfele "statisztikai" dolgot megmondani. Az egyszerueseg kedveert feltetelezzuk, hogy  mert adatok csak egeszek lesznek.
+Az feladat egy olyan osztaly letrehozasa, melyben mert adatok listajat tudjuk tarolni, illetve errol 
+mindenfele "statisztikai" dolgot megmondani. Az egyszerueseg kedveert feltetelezzuk, hogy  
+mert adatok csak egeszek lesznek.
 
 A tesztek az ebben a docstringben megadott peldakra mennek le.
 
@@ -22,10 +24,14 @@ Szekek szama irodakban
     5 | #####
     6 | #
 
-Ennek a fuggvenynek olyan kimenetet kell generalnia, hogy kiirja a dattaset nevet, alahuzza gondolatjelekkel, majd vegigmegy az ertekeken aa legkisebbtol a legnagyobbikig, es soronkent kiirja oket 5 karakter szelesen jobbra igazitva, majd egy elvalsazto resz, es utan annyi #, ahanyszor az az ertek elofordult.
+Ennek a fuggvenynek olyan kimenetet kell generalnia, hogy kiirja a dataset nevet, 
+alahuzza gondolatjelekkel, majd vegigmegy az ertekeken a legkisebbtol a legnagyobbikig, 
+es soronkent kiirja oket 5 karakter szelesen jobbra igazitva, majd egy elvalsazto resz, 
+es utan annyi #, ahanyszor az az ertek elofordult.
 
 
-Ha van olyan ertek, ami nem szerepelt egyszer sem, de benne van ebben az intervallumban, akkor is megjelenik, csak 0 db #-tel:
+Ha van olyan ertek, ami nem szerepelt egyszer sem, de benne van ebben az intervallumban, 
+akkor is megjelenik, csak 0 db #-tel:
 
 >>> ds.record(9)
 >>> ds.print_histogram()
@@ -58,7 +64,7 @@ Nehany tovabbi meres utan:
 >>> ds.range()
 (1, 12)
 
-Legyen az osztalyhoz par statisztiki fuggveny is, mint pl:
+Legyen az osztalyhoz par statisztikai fuggveny is, mint pl:
 
 A `count` megszamolja, hogy egy adott ertek hanyszor fordult elo:
 >>> ds.count(3)
@@ -73,7 +79,7 @@ Az `average` megadja hogy mennyi volt az atlag mert ertek:
 >>> ds.average()
 4.84
 
-Vegezetul a `probability` megdja a mert statisztikk alapjan, hogy egy adott erteknek mennyi a valoszinusege:
+Vegezetul a `probability` megadja a mert statisztikk alapjan, hogy egy adott erteknek mennyi a valoszinusege:
 >>> ds.probability(3)
 0.2
 >>> ds.probability(2)
@@ -109,32 +115,48 @@ Felev vegi jegyek
 """
 
 class DataSet:
+    data_set = []
 
-    def __init__(self, name) -> None:
-        pass
+    def __init__(self, name):
+        self.name = name
     
-    def record(self,data) -> None:
-        pass
+    def record(self,data):
+        self.data_set.append(data)
     
-    def average(self) -> float:
-        pass
+    def average(self):
+        return sum(self.data_set)/len(self.data_set)
 
-    def min(self) -> int:
-        pass
+    def min(self):
+        minimum = self.data_set[0]
+        for i in self.data_set:
+            if i < minimum:
+                minimum = i
+        return minimum
 
-    def max(self) -> int:
-        pass
+    def max(self):
+        maximum = self.data_set[0]
+        for i in self.data_set:
+            if i > maximum:
+                maximum = i
+        return maximum
     
-    def count(self,x) -> int:
-        pass
+    def count(self,x):
+        c = 0
+        for i in self.data_set:
+            if x == i:
+                c+=1
+        return c
     
-    def probability(self,x) -> float:
-        pass
+    def probability(self,x):
+        return self.count(x)/len(self.data_set)
     
-    def range(self) -> tuple:
-        pass
+    def range(self):
+        return (self.min(), self.max())
 
-    def print_histogram(self) -> None:
-        pass
-
-
+    def print_histogram(self):
+        print(self.name)
+        print(len(self.name)*"-")
+        i = 0
+        while i < len(self.data_set):
+            print("{} {} | {}".format((5-len(str(self.data_set[i])))*" ", self.data_set[i], self.data_set[i]*"#"))
+            i+=1

@@ -45,7 +45,8 @@ Szekek szama irodakban
     8 | 
     9 | #
 
-A legkisebb, legnagyobb mert erteket, valamint a mert ertekek intervallumat a kovetkezo fuggvenyek adjak vissza:
+A legkisebb, legnagyobb mert erteket, valamint a mert ertekek intervallumat a kovetkezo
+fuggvenyek adjak vissza:
 
 >>> ds.min()
 3
@@ -156,7 +157,7 @@ class DataSet:
     def print_histogram(self):
         print(self.name)
         print(len(self.name)*"-")
-        i = 0
-        while i < len(self.data_set):
-            print("{} {} | {}".format((5-len(str(self.data_set[i])))*" ", self.data_set[i], self.data_set[i]*"#"))
+        i = self.min()
+        while i <= self.max():
+            print("{} {} | {}".format((5-(len(str(i))))*" ", i, self.count(i)*"#"))
             i+=1

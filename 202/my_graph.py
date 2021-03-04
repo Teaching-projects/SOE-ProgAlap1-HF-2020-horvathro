@@ -139,30 +139,3 @@ class Graph:
             if i[0] in vertices and i[1] in vertices:
                 x.edges.append(i)
         return x
-
-
-g = Graph(['A','B','C'])
-print(g.add_vertex('A'))
-print(g.add_vertex('D'))
-print(g.add_edge('A','B'))
-print(g.add_edge('B','C'))
-print(g.add_edge('B','D'))
-print(g.add_edge('D','C'))
-print(g.add_edge('B','A'))
-print(g.add_vertex('E'))
-print(g.edges)
-g2=g.get_subgraph({'A','C','D'})
-for v1 in "ABCDE":
-     for v2 in "ABCDE":
-         if v1<v2 and g2.has_edge(v1,v2):
-            print("{}-{}".format(v1,v2))
-print("")
-g3=g.get_subgraph({'B','C','A'})
-for v1 in "ABCDE":
-     for v2 in "ABCDE":
-         if v1<v2 and g3.has_edge(v1,v2):
-            print("{}-{}".format(v1,v2))
-
-
-
-
